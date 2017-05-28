@@ -1,0 +1,68 @@
+.yarval-checkbox {
+    cursor: pointer;
+
+    span {
+        vertical-align: middle;
+        transition: color 500ms;
+
+        &:last-child {
+            color: rgb(143, 145, 141);
+        }
+    }
+}
+
+input.yarval-checkbox {
+    display: none;
+}
+
+.yarval-checkbox__slider {
+    display: inline-block;
+    position: relative;
+
+    width: 42px;
+    height: 22px;
+    margin: 0 8px;
+
+    border: 1px solid rgb(143, 145, 141);
+    border-radius: 15px;
+
+    vertical-align: middle;
+    transition: border-color 500ms;
+
+    &:before {
+        position: absolute;
+        left: -1px;
+
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+
+        border: 6px solid rgb(143, 145, 141);
+        border-radius: 50%;
+
+        content: '';
+
+        transition: left 200ms, border-color 500ms;
+    }
+}
+
+input:checked + .yarval-checkbox {
+    span {
+        &:first-child {
+            color: rgb(143, 145, 141);
+        }
+
+        &:last-child {
+            color: #000;
+        }
+    }
+
+    .yarval-checkbox__slider {
+        border-color: green;
+
+        &:before {
+            border-color: green;
+            left: 21px;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+.chart {
+    display: block;
+    padding-right: 115px;
+    font-size: 0;
+    white-space: nowrap;
+}
+
+.chart__bar,
+.chart__total {
+    font-size: 12px;
+}
+
+.chart__bar {
+    display: inline-block;
+    vertical-align: top;
+    border-top: 10px solid #FF0000;
+    padding-top: 11px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:nth-child(1) {
+        border-top-color: rgb(89, 135, 100);
+    }
+
+    &:nth-child(2) {
+        border-top-color: rgb(106, 166, 129);
+    }
+
+    &:nth-child(3) {
+        border-top-color: rgb(133, 179, 149);
+    }
+
+    &:nth-child(4) {
+        border-top-color: rgb(110, 115, 74);
+    }
+
+    &:nth-child(5) {
+        border-top-color: rgb(150, 147, 97);
+    }
+
+    &:nth-child(6) {
+        border-top-color: rgb(181, 168, 129);
+    }
+}
+
+.chart__total {
+    display: inline-block;
+    padding-left: 21px;
+    color: rgb(111, 114, 110);
+
+    vertical-align: bottom;
+
+    p:first-child {
+        margin-bottom: 7px;
+    }
+}
