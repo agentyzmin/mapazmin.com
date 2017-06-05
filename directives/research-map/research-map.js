@@ -87,6 +87,10 @@
                 }
             });
 
+            $scope.$watch(function() {
+                return $('.filters').outerHeight();
+            }, updateMapHeight);
+
             function init() {
                 var layerNames, i,
                     tileLayer = L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
@@ -527,10 +531,13 @@
                 return dict[string];
             }
 
-            function updateMapHeight() {
-                var height = $('.filters').outerHeight();
+            function updateMapHeight(height) {
+                if (!height) {
+                    height = $('.filters').outerHeight();
+                }
 
-                $('#' + $attrs.id).css('height', height);
+                $element.css('height', height);
+                map.invalidateSize();
             }
         }
     }]);
