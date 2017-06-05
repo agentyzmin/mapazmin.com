@@ -9,7 +9,7 @@ gulp.task('default', ['watch']);
 gulp.task('watch', ['build-css', 'build-js'], function() {
     gulp.watch('./*.less', ['build-css']);
     gulp.watch('./styles/*.less', ['build-css']);
-    gulp.watch('./js/app.js', ['build-js']);
+    gulp.watch('./js/filters.js', ['build-js']);
 });
 
 gulp.task('build-css', function() {
@@ -35,7 +35,7 @@ gulp.task('build-js', ['uglify'], function() {
 
 gulp.task('uglify', function() {
     return gulp
-        .src('./js/app.js')
+        .src('./js/filters.js')
         .pipe(uglify().on('error', function(err) {
             console.log(err);
             this.emit('end');

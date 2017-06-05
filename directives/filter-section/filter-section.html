@@ -1,0 +1,39 @@
+<h3>{{ title }}</h3>
+
+<div class="filter-by">
+    <label ng-repeat="filter in filters track by $index">
+        <input type="radio" name="filter__section-filer-by-{{ ::id }}" ng-checked="filter.isChecked" ng-click="filterBy(filter)">
+        <span>{{ ::filter.name }}</span>
+    </label>
+</div>
+
+<div></div>
+
+<input type="checkbox" class="yarval-checkbox" id="filter__section-floor-switch-{{ ::id }}" ng-model="activeFilter.allFloors" />
+<label ng-if="::activeFilter.hasFloorSelector" class="yarval-checkbox" for="filter__section-floor-switch-{{ ::id }}">
+    <span>1 поверх</span>
+    <div class="yarval-checkbox__slider"></div>
+    <span>Всі поверхи</span>
+</label>
+
+<div class="filter-values">
+    <div class="filter-values__group">
+        <label>
+            <input type="checkbox" ng-model="allCheckedFilters[activeFilter.id]" ng-click="checkAll(activeFilter)">
+            <span>Всі</span>
+        </label>
+    </div>
+
+    <div class="filter-values__group">
+        <label ng-repeat="option in activeFilter.options">
+            <input type="checkbox" ng-model="option.isChecked" ng-change="onFilterValueChange(activeFilter)">
+            <span>{{ ::option.name }}</span>
+        </label>
+    </div>
+</div>
+
+<div class="chart"
+     ng-if="stats"
+     bar-chart
+     data-stats="stats"
+></div>

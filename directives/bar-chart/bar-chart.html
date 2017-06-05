@@ -1,0 +1,10 @@
+<div class="chart__bar"
+     ng-repeat="option in stats.options"
+     ng-style="{ width: option.width + '%' }"
+     title="{{ ::option.text }}"
+>{{ ::option.text }}</div>
+
+<div class="chart__total">
+    <p>Всього:</p>
+    <p>{{ stats.total }}</p>
+</div>

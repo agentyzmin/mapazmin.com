@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^research$ / [L,NC]
+RewriteRule ^research/$ / [L,NC]
