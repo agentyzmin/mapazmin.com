@@ -1,6 +1,6 @@
 <div class="chart__bar"
      ng-repeat="option in stats.options"
-     ng-style="{ width: option.width + '%' }"
+     ng-style="{ width: option.width + '%', 'border-top-color': option.color }"
      title="{{ ::option.text }}"
 >{{ ::option.text }}</div>
 

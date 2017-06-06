@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var module = angular.module('app.research.stats', []);
+    var module = angular.module('app.research.stats', ['app.config']);
 
-    module.factory('researchStat', function() {
+    module.factory('researchStat', ['appConfig', function(appConfig) {
         function getPeopleStat(filter, isAbsolute) {
             var summary = 0,
                 filtered = 0,
@@ -62,31 +62,37 @@
                     {
                         id: 'ruin',
                         name: 'Руїни',
+                        color: appConfig.colors.buildingsRuin,
                         value: 24370
                     },
                     {
                         id: 'housing',
                         name: 'Житло',
+                        color: appConfig.colors.buildingsHousing,
                         value: 28013
                     },
                     {
                         id: 'culture',
                         name: 'Культура',
+                        color: appConfig.colors.buildingsCulture,
                         value: 39296
                     },
                     {
                         id: 'garage',
                         name: 'Гаражі',
+                        color: appConfig.colors.buildingsGarage,
                         value: 51213
                     },
                     {
                         id: 'cafe',
                         name: 'Кафе',
+                        color: appConfig.colors.buildingsCafe,
                         value: 83502
                     },
                     {
                         id: 'office',
                         name: 'Офіси',
+                        color: appConfig.colors.buildingsOffice,
                         value: 191814
                     }
                 ];
@@ -111,6 +117,7 @@
 
                 return {
                     width: Math.round(option.value / filtered * 100),
+                    color: option.color,
                     text: text
                 }
             });
@@ -128,41 +135,49 @@
                     {
                         id: 'active',
                         name: 'Активний',
+                        colors: appConfig.colors.facadeActive,
                         value: 586.79
                     },
                     {
                         id: 'inactive',
                         name: 'Неактивний',
+                        colors: appConfig.colors.facadeInactive,
                         value: 1899.50
                     },
                     {
                         id: 'dopey',
                         name: 'Млявий',
+                        color: appConfig.colors.facadeDopey,
                         value: 3756.96
                     },
                     {
                         id: 'green',
                         name: 'Озеленення',
+                        color: appConfig.colors.facadeGreen,
                         value: 1605.97
                     },
                     {
                         id: 'hole',
                         name: 'Проїзд',
+                        color: appConfig.colors.facadeHole,
                         value: 574
                     },
                     {
                         id: 'monument',
                         name: 'Пам’ятка',
+                        color: appConfig.colors.facadeMonument,
                         value: 495.76
                     },
                     {
                         id: 'nothing',
                         name: 'Ніякий',
+                        color: appConfig.colors.facadeNothing,
                         value: 11167.84
                     },
                     {
                         id: 'tolerable',
                         name: 'Задовільний',
+                        color: appConfig.colors.facadeTolerable,
                         value: 2888.91
                     }
                 ];
@@ -187,6 +202,7 @@
 
                 return {
                     width: Math.round(option.value / filtered * 100),
+                    color: option.color,
                     text: text
                 }
             });
@@ -204,21 +220,25 @@
                     {
                         id: 'roads',
                         name: 'Дороги',
+                        color: appConfig.colors.roads,
                         value: 115546
                     },
                     {
                         id: 'open',
                         name: 'Легкодосяжні',
+                        color: appConfig.colors.accessibilityOpen,
                         value: 226849
                     },
                     {
                         id: 'hard_to_reach',
                         name: 'Важкодоступні',
+                        color: appConfig.colors.accessibilityHardToReach,
                         value: 246957
                     },
                     {
                         id: 'unreachable',
                         name: 'Недосяжні',
+                        color: appConfig.colors.accessibilityUnreachable,
                         value: 184953
                     }
                 ];
@@ -243,6 +263,7 @@
 
                 return {
                     width: Math.round(option.value / filtered * 100),
+                    color: option.color,
                     text: text
                 }
             });
@@ -358,5 +379,5 @@
             getCarsStat: getCarsStat,
             getTreesStat: getTreesStat
         }
-    });
+    }]);
 }());

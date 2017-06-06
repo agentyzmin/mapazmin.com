@@ -1,37 +1,9 @@
 (function() {
     'use strict';
 
-    var COLORS = {
-        'roads': '#6D6D6D',
-        'yards': '#fcde60',
-        'buildings': '#C9CFD2',
-        'firstFloorFunction': '#9463C2',
-        'cars': '#242424',
-        'carsDay': '#242424',
-        'carsNight': '#242424',
-        'trees': '#91C497',
-        'hard_to_reach': '#898989',
-        'open': '#fcde60',
-        'unreachable': '#666666',
-        'office': '#9463C2',
-        'cafe': '#FD6E70',
-        'garage': '#AAAAAA',
-        'culture': '#4390FC',
-        'housing': '#FFF6CF',
-        'ruin': '#565656',
-        'tolerable': '#84B7E3',
-        'inactive': '#F06251',
-        'monument': '#A082A3',
-        'dopey': '#EDA156',
-        'hole': '#E2E2E2',
-        'active': '#0990C6',
-        'green': '#478456',
-        'nothing': '#EFD8B8'
-    };
+    var module = angular.module('app.research.map', ['app.config']);
 
-    var module = angular.module('app.research.map', []);
-
-    module.directive('researchMap', ['$timeout', '$window', function($timeout, window) {
+    module.directive('researchMap', ['appConfig', '$timeout', '$window', function(appConfig, $timeout, window) {
         return {
             restrict: 'A',
             link: link,
@@ -140,22 +112,21 @@
 
             function initRoads(geoJSON) {
                 var geoJSONLayer = L.geoJSON(geoJSON, {
-                    color: COLORS.roads,
+                    color: appConfig.colors.roads,
                     opacity: 1,
                     weight: 1,
-                    fillColor: COLORS.roads,
+                    fillColor: appConfig.colors.roads,
                     fillOpacity: 1,
                     smoothFactor: 1
                 });
 
                 copyLayers(geoJSONLayer, layerGroups.roads);
                 layerGroups.roads.addTo(map);
-                filterRoads($scope.roads);
+                filterRoads($scope.showRoads);
             }
 
             function filterRoads(isVisible) {
                 layerGroups.roads.eachLayer(function(data) {
-
                     if (!isVisible) {
                         data.options.opacity = 0;
                         data.options.fillOpacity = 0;
@@ -182,16 +153,32 @@
 
                 function style(feature) {
                     return {
-                        color: '#AAB3BE',
+                        color: appConfig.colors.yardsBorder,
                         opacity: 1,
                         weight: 1,
                         smoothFactor: 1,
-                        fillColor: COLORS[feature.properties.category] || '#000000',
+                        fillColor: getColor(feature.properties.category),
                         fillOpacity: 0.8
                     }
                 }
 
                 function onEachFeature(feature, layer) {
+                }
+
+                function getColor(category) {
+                    switch (category.toLowerCase()) {
+                        case 'open':
+                            return appConfig.colors.accessibilityOpen;
+
+                        case 'hard_to_reach':
+                            return appConfig.colors.accessibilityHardToReach;
+
+                        case 'unreachable':
+                            return appConfig.colors.accessibilityUnreachable;
+
+                        default:
+                            return '#000000';
+                    }
                 }
             }
 
@@ -225,11 +212,11 @@
 
                 function style(feature) {
                     return {
-                        color: '#AAB3BE',
+                        color: appConfig.colors.buildingsBorder,
                         opacity: 1,
                         weight: 1,
                         smoothFactor: 1,
-                        fillColor: COLORS[feature.properties.floors[1]] || '#000000',
+                        fillColor: getColor(feature.properties.floors[1]),
                         fillOpacity: 0.8
                     }
                 }
@@ -251,6 +238,31 @@
                     text += '<p>Площа: ' + feature.properties.area.toFixed(2) + '</p>';
 
                     layer.bindPopup(text);
+                }
+
+                function getColor(type) {
+                    switch (type.toLocaleString()) {
+                        case 'ruin':
+                            return appConfig.colors.buildingsRuin;
+
+                        case 'housing':
+                            return appConfig.colors.buildingsHousing;
+
+                        case 'culture':
+                            return appConfig.colors.buildingsCulture;
+
+                        case 'garage':
+                            return appConfig.colors.buildingsGarage;
+
+                        case 'cafe':
+                            return appConfig.colors.buildingsCafe;
+
+                        case 'office':
+                            return appConfig.colors.buildingsOffice;
+
+                        default:
+                            return appConfig.colors.error;
+                    }
                 }
             }
 
@@ -274,18 +286,24 @@
 
             function initCars(geoJSON) {
                 var geoJSONLayer = L.geoJSON(geoJSON, {
-                    color: COLORS.cars,
-                    opacity: 1,
-                    weight: 1,
-                    fillColor: COLORS.cars,
-                    fillOpacity: 1,
-                    smoothFactor: 1,
+                    style: style,
                     onEachFeature: onEachFeature
                 });
 
                 copyLayers(geoJSONLayer, layerGroups.cars);
                 layerGroups.cars.addTo(map);
                 filterCars($scope.carsOptions);
+
+                function style(feature) {
+                    return {
+                        color: getColor(feature.properties.streets),
+                        opacity: 1,
+                        weight: 1,
+                        fillColor: getColor(feature.properties.streets),
+                        fillOpacity: 1,
+                        smoothFactor: 1
+                    }
+                }
 
                 function onEachFeature(feature, layer) {
                     var index,
@@ -302,6 +320,10 @@
 
                         layer.bindPopup(text);
                     }
+                }
+
+                function getColor(streets) {
+                    return (streets && streets.length) ? appConfig.colors.carsStreet : appConfig.colors.carsYard;
                 }
             }
 
@@ -340,10 +362,10 @@
                 function pointToLayer(feature, latlng) {
                     return L.circle(latlng, {
                         radius: feature.properties.radius,
-                        color: COLORS.trees,
+                        color: getColor(feature.properties.radius),
                         weight: 1,
                         opacity: 0.8,
-                        fillColor: COLORS.trees,
+                        fillColor: getColor(feature.properties.radius),
                         fillOpacity: 0.8,
                         zIndex: 200
                     })
@@ -364,6 +386,18 @@
                         text += '</p>';
 
                         layer.bindPopup(text);
+                    }
+                }
+
+                function getColor(radius) {
+                    if (radius < 1) {
+                        return appConfig.colors.treesS;
+                    } else if (radius < 3) {
+                        return appConfig.colors.treesM;
+                    } else if (radius >= 3) {
+                        return appConfig.colors.treesL;
+                    } else {
+                        return appConfig.colors.error;
                     }
                 }
             }
@@ -409,7 +443,7 @@
 
                 function style(feature) {
                     return {
-                        color: COLORS[feature.properties.category] || '#000000',
+                        color: getColor(feature.properties.category),
                         opacity: 1,
                         weight: 5,
                         smoothFactor: 0.5
@@ -436,6 +470,37 @@
                     layer.bindPopup(text);
                     layer.options.lineCap = 'butt';
                     layer.options.lineJoin = 'butt'
+                }
+
+                function getColor(type) {
+                    switch (type.toLowerCase()) {
+                        case 'active':
+                            return appConfig.colors.facadeActive;
+
+                        case 'inactive':
+                            return appConfig.colors.facadeInactive;
+
+                        case 'dopey':
+                            return appConfig.colors.facadeDopey;
+
+                        case 'green':
+                            return appConfig.colors.facadeGreen;
+
+                        case 'hole':
+                            return appConfig.colors.facadeHole;
+
+                        case 'monument':
+                            return appConfig.colors.facadeMonument;
+
+                        case 'nothing':
+                            return appConfig.colors.facadeNothing;
+
+                        case 'tolerable':
+                            return appConfig.colors.facadeTolerable;
+
+                        default:
+                            return appConfig.colors.error;
+                    }
                 }
             }
 
