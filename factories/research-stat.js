@@ -135,7 +135,7 @@
                     {
                         id: 'active',
                         name: 'Активний',
-                        colors: appConfig.colors.facadeActive,
+                        color: appConfig.colors.facadeActive,
                         value: 586.79
                     },
                     {
@@ -159,7 +159,7 @@
                     {
                         id: 'inactive',
                         name: 'Неактивний',
-                        colors: appConfig.colors.facadeInactive,
+                        color: appConfig.colors.facadeInactive,
                         value: 1899.50
                     },
                     {
