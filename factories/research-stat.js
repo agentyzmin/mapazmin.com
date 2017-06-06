@@ -202,6 +202,11 @@
                 filtered = 0,
                 options = [
                     {
+                        id: 'roads',
+                        name: 'Дороги',
+                        value: 115546
+                    },
+                    {
                         id: 'open',
                         name: 'Легкодосяжні',
                         value: 226849

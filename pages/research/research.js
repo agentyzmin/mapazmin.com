@@ -245,11 +245,7 @@
                 return (option !== 'roads');
             });
 
-            if ($scope.yardsOptions.length) {
-                $scope.areaStats = researchStat.getAccessibilityStat($scope.yardsOptions, $scope.isAbsoluteValues);
-            } else {
-                $scope.areaStats = null;
-            }
+            $scope.areaStats = researchStat.getAccessibilityStat(selectedOptions, $scope.isAbsoluteValues);
         }
 
         function updateObjectsData() {
