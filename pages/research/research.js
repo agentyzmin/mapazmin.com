@@ -5,7 +5,8 @@
         'ngRoute',
         'app.research.filterSection',
         'app.research.stats',
-        'app.research.map'
+        'app.research.map',
+        'app.research.filtersScale'
     ]);
 
     module.controller('ResearchCtrl', ['$scope', '$rootScope', '$timeout', 'researchStat', function($scope, $rootScope, $timeout, researchStat) {

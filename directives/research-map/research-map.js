@@ -31,7 +31,7 @@
 
     var module = angular.module('app.research.map', []);
 
-    module.directive('researchMap', ['$timeout', function($timeout) {
+    module.directive('researchMap', ['$timeout', '$window', function($timeout, window) {
         return {
             restrict: 'A',
             link: link,
@@ -50,6 +50,7 @@
 
             init();
             $timeout(updateMapHeight);
+            $(window).on('resize', updateMapHeight);
 
             $scope.$watch('facadesOptions', function(val) {
                 if (typeof val === 'object') {
@@ -531,10 +532,8 @@
                 return dict[string];
             }
 
-            function updateMapHeight(height) {
-                if (!height) {
-                    height = $('.filters').outerHeight();
-                }
+            function updateMapHeight() {
+                var height = Math.max($('.filters').outerHeight(), $(window).height());
 
                 $element.css('height', height);
                 map.invalidateSize();
