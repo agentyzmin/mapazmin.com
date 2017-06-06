@@ -139,16 +139,34 @@
                         value: 586.79
                     },
                     {
-                        id: 'inactive',
-                        name: 'Неактивний',
-                        colors: appConfig.colors.facadeInactive,
-                        value: 1899.50
+                        id: 'tolerable',
+                        name: 'Задовільний',
+                        color: appConfig.colors.facadeTolerable,
+                        value: 2888.91
+                    },
+                    {
+                        id: 'nothing',
+                        name: 'Ніякий',
+                        color: appConfig.colors.facadeNothing,
+                        value: 11167.84
                     },
                     {
                         id: 'dopey',
                         name: 'Млявий',
                         color: appConfig.colors.facadeDopey,
                         value: 3756.96
+                    },
+                    {
+                        id: 'inactive',
+                        name: 'Неактивний',
+                        colors: appConfig.colors.facadeInactive,
+                        value: 1899.50
+                    },
+                    {
+                        id: 'monument',
+                        name: 'Пам’ятка',
+                        color: appConfig.colors.facadeMonument,
+                        value: 495.76
                     },
                     {
                         id: 'green',
@@ -161,24 +179,6 @@
                         name: 'Проїзд',
                         color: appConfig.colors.facadeHole,
                         value: 574
-                    },
-                    {
-                        id: 'monument',
-                        name: 'Пам’ятка',
-                        color: appConfig.colors.facadeMonument,
-                        value: 495.76
-                    },
-                    {
-                        id: 'nothing',
-                        name: 'Ніякий',
-                        color: appConfig.colors.facadeNothing,
-                        value: 11167.84
-                    },
-                    {
-                        id: 'tolerable',
-                        name: 'Задовільний',
-                        color: appConfig.colors.facadeTolerable,
-                        value: 2888.91
                     }
                 ];
 

@@ -73,12 +73,24 @@
                         name: 'Активний'
                     },
                     {
-                        id: 'inactive',
-                        name: 'Неактивний'
+                        id: 'tolerable',
+                        name: 'Задовільний'
+                    },
+                    {
+                        id: 'nothing',
+                        name: 'Ніякий'
                     },
                     {
                         id: 'dopey',
                         name: 'Млявий'
+                    },
+                    {
+                        id: 'inactive',
+                        name: 'Неактивний'
+                    },
+                    {
+                        id: 'monument',
+                        name: 'Пам’ятка'
                     },
                     {
                         id: 'green',
@@ -87,18 +99,6 @@
                     {
                         id: 'hole',
                         name: 'Проїзд'
-                    },
-                    {
-                        id: 'monument',
-                        name: 'Пам’ятка'
-                    },
-                    {
-                        id: 'nothing',
-                        name: 'Ніякий'
-                    },
-                    {
-                        id: 'tolerable',
-                        name: 'Задовільний'
                     }
                 ]
             }
