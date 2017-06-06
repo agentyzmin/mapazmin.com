@@ -24,7 +24,6 @@
                     zoom = size / 875;
                 }
 
-                console.log(zoom);
                 $element.css('transform', 'scale(' + zoom + ')');
             }
         }
