@@ -21,8 +21,6 @@
             var map, layerGroups;
 
             init();
-            $timeout(updateMapHeight);
-            $(window).on('resize', updateMapHeight);
 
             $scope.$watch('facadesOptions', function(val) {
                 if (typeof val === 'object') {
@@ -59,10 +57,6 @@
                     filterRoads(val);
                 }
             });
-
-            $scope.$watch(function() {
-                return $('.filters').outerHeight();
-            }, updateMapHeight);
 
             function init() {
                 var layerNames, i,
@@ -595,13 +589,6 @@
                 };
 
                 return dict[string];
-            }
-
-            function updateMapHeight() {
-                var height = Math.max($('.filters').outerHeight(), $(window).height());
-
-                $element.css('height', height);
-                map.invalidateSize();
             }
         }
     }]);

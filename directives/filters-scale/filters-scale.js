@@ -16,6 +16,10 @@
             $window.on('resize', resize);
             resize();
 
+            $scope.$watch(function() {
+                return $element.outerHeight();
+            }, resize);
+
             function resize() {
                 var zoom = 1,
                     size = $window.width() / 2;
@@ -25,6 +29,7 @@
                 }
 
                 $element.css('transform', 'scale(' + zoom + ')');
+                $element.parent().css('height', $element.outerHeight());
             }
         }
     }]);
