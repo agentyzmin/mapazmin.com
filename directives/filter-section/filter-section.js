@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var module = angular.module('app.research.filterSection', ['app.barChart']);
+    var module = angular.module('app.research.filterSection', ['app.barChart', 'app.i18n']);
 
-    module.directive('filterSection', [function() {
+    module.directive('filterSection', ['i18n', function(i18n) {
         return {
             restrict: 'A',
             link: link,
@@ -16,6 +16,7 @@
         };
 
         function link($scope, $element, $attrs) {
+            $scope.i18n = i18n;
             $scope.id = $scope.$id;
             $scope.allCheckedFilters = {};
 

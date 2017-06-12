@@ -1,24 +1,26 @@
 <div class="filters">
     <input class="yarval-checkbox" type="checkbox" id="is_absolute_values" ng-model="isAbsoluteValues" ng-value="true">
     <label class="filters__absolute yarval-checkbox" for="is_absolute_values">
-        <span>Відсотки</span>
+        <span>{{ ::i18n.common('percent') }}</span>
         <div class="yarval-checkbox__slider"></div>
-        <span>Абсолютно</span>
+        <span>{{ ::i18n.common('absolute') }}</span>
     </label>
 
-    <h1>Мапа змін</h1>
+    <h1>{{ ::i18n.common('homePageTitle') }}</h1>
 
-    <div class="filters__section" filter-section data-title="Люди" data-filters="::peopleFilter" data-stats="peopleStat"></div>
-    <div class="filters__section" filter-section data-title="Будівлі" data-filters="::buildingsFilter" data-stats="buildingsStat"></div>
-    <div class="filters__section" filter-section data-title="Територія" data-filters="::areaFilter" data-stats="areaStats"></div>
-    <div class="filters__section" filter-section data-title="Об’єкти" data-filters="::objectsFilter" data-stats="objectsStats"></div>
+    <div class="filters__section" filter-section data-title="{{ ::i18n.common('peopleFilterTitle') }}" data-filters="::peopleFilter" data-stats="peopleStat"></div>
+    <div class="filters__section" filter-section data-title="{{ ::i18n.common('buildingsFilterTitle') }}" data-filters="::buildingsFilter" data-stats="buildingsStat"></div>
+    <div class="filters__section" filter-section data-title="{{ ::i18n.common('areaFilterTitle') }}" data-filters="::areaFilter" data-stats="areaStats"></div>
+    <div class="filters__section" filter-section data-title="{{ ::i18n.common('objectsFilterTitle') }}" data-filters="::objectsFilter" data-stats="objectsStats"></div>
 
     <div class="filters__line"></div>
 
+    <!--
     <div class="filters__section filters__comparison">
         <h3>Порівняння:</h3>
         <p>1 людина — 50 000 м<sup>2</sup> — 350 000 м<sup>2</sup> — 439 лавок</p>
     </div>
+    -->
 </div><!--
 
 --><div class="map"

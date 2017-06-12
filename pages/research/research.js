@@ -6,27 +6,30 @@
         'app.research.filterSection',
         'app.research.stats',
         'app.research.map',
-        'app.research.filtersScale'
+        'app.research.filtersScale',
+        'app.i18n'
     ]);
 
-    module.controller('ResearchCtrl', ['$scope', '$rootScope', '$timeout', 'researchStat', function($scope, $rootScope, $timeout, researchStat) {
+    module.controller('ResearchCtrl', ['$scope', '$rootScope', '$timeout', 'researchStat', 'i18n', function($scope, $rootScope, $timeout, researchStat, i18n) {
+        $scope.i18n = i18n;
+
         $scope.peopleFilter = [
             {
                 id: 'activity',
-                name: 'Зайнятість',
+                name: i18n.people('filterName'),
                 isChecked: true,
                 options: [
                     {
                         id: 'students',
-                        name: 'Учні'
+                        name: i18n.people('students')
                     },
                     {
                         id: 'workers',
-                        name: 'Працівники'
+                        name: i18n.people('workers')
                     },
                     {
                         id: 'residents',
-                        name: 'Мешканці'
+                        name: i18n.people('residents')
                     }
                 ]
             }
@@ -35,58 +38,58 @@
         $scope.buildingsFilter = [
             {
                 id: 'buildings',
-                name: 'Функція',
+                name: i18n.buildings('filterName'),
                 isChecked: true,
                 options: [
                     {
                         id: 'ruin',
-                        name: 'Руїни'
+                        name: i18n.buildings('ruin')
                     },
                     {
                         id: 'housing',
-                        name: 'Житло'
+                        name: i18n.buildings('housing')
                     },
                     {
                         id: 'culture',
-                        name: 'Культура'
+                        name: i18n.buildings('culture')
                     },
                     {
                         id: 'garage',
-                        name: 'Гаражі'
+                        name: i18n.buildings('garage')
                     },
                     {
                         id: 'cafe',
-                        name: 'Кафе'
+                        name: i18n.buildings('cafe')
                     },
                     {
                         id: 'office',
-                        name: 'Офіси'
+                        name: i18n.buildings('office')
                     }
                 ]
             },
             {
                 id: 'facades',
-                name: 'Активність фасадів',
+                name: i18n.facades('filterName'),
                 options: [
                     {
                         id: 'active',
-                        name: 'Активний'
+                        name: i18n.facades('active')
                     },
                     {
                         id: 'tolerable',
-                        name: 'Задовільний'
+                        name: i18n.facades('tolerable')
                     },
                     {
                         id: 'nothing',
-                        name: 'Ніякий'
+                        name: i18n.facades('nothing')
                     },
                     {
                         id: 'dopey',
-                        name: 'Млявий'
+                        name: i18n.facades('dopey')
                     },
                     {
                         id: 'inactive',
-                        name: 'Неактивний'
+                        name: i18n.facades('inactive')
                     }
                 ]
             }
@@ -95,24 +98,24 @@
         $scope.areaFilter = [
             {
                 id: 'purpose',
-                name: 'Доступність',
+                name: i18n.accessibility('filterName'),
                 isChecked: true,
                 options: [
                     {
                         id: 'roads',
-                        name: 'Дороги'
+                        name: i18n.accessibility('roads')
                     },
                     {
                         id: 'open',
-                        name: 'Легкодосяжні'
+                        name: i18n.accessibility('open')
                     },
                     {
                         id: 'hard_to_reach',
-                        name: 'Важкодоступні'
+                        name: i18n.accessibility('hardToReach')
                     },
                     {
                         id: 'unreachable',
-                        name: 'Недосяжні'
+                        name: i18n.accessibility('unreachable')
                     }
                 ]
             }
@@ -121,34 +124,34 @@
         $scope.objectsFilter = [
             {
                 id: 'parking',
-                name: 'Парковки',
+                name: i18n.parking('filterName'),
                 isChecked: true,
                 options: [
                     {
                         id: 'yard',
-                        name: 'Подвір’я'
+                        name: i18n.parking('yard')
                     },
                     {
                         id: 'street',
-                        name: 'Вулиця'
+                        name: i18n.parking('street')
                     }
                 ]
             },
             {
                 id: 'trees',
-                name: 'Дерева',
+                name: i18n.trees('filterName'),
                 options: [
                     {
                         id: 'l',
-                        name: 'Великі'
+                        name: i18n.trees('l')
                     },
                     {
                         id: 'm',
-                        name: 'Середні'
+                        name: i18n.trees('m')
                     },
                     {
                         id: 's',
-                        name: 'Малі'
+                        name: i18n.trees('s')
                     }
                 ]
             }

@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var module = angular.module('app.research.map', ['app.config']);
+    var module = angular.module('app.research.map', ['app.config', 'app.i18n']);
 
-    module.directive('researchMap', ['appConfig', '$timeout', '$window', function(appConfig, $timeout, window) {
+    module.directive('researchMap', ['appConfig', '$timeout', '$window', 'i18n', function(appConfig, $timeout, window, i18n) {
         return {
             restrict: 'A',
             link: link,
@@ -221,15 +221,15 @@
 
                     if (feature.properties.streets && feature.properties.streets.length) {
                         text += '<p>';
-                        text += feature.properties.streets.length > 1 ? 'Вулиці: ' : 'Вулиця: ';
+                        text += feature.properties.streets.length > 1 ? i18n.map('streets') : i18n.map('street');
                         for (index in feature.properties.streets) {
-                            text += i18n(feature.properties.streets[index]);
+                            text += i18n.streets(feature.properties.streets[index]);
                             text += ((feature.properties.streets.length - index > 1) ? ', ' : '');
                         }
                         text += '</p>';
                     }
 
-                    text += '<p>Площа: ' + feature.properties.area.toFixed(2) + '</p>';
+                    text += '<p>' + i18n.map('area') + feature.properties.area.toFixed(2) + i18n.map('m2') + '</p>';
 
                     layer.bindPopup(text);
                 }
@@ -305,9 +305,9 @@
 
                     if (feature.properties.streets && feature.properties.streets.length) {
                         text += '<p>';
-                        text += feature.properties.streets.length > 1 ? 'Вулиці: ' : 'Вулиця: ';
+                        text += feature.properties.streets.length > 1 ? i18n.map('streets') : i18n.map('street');
                         for (index in feature.properties.streets) {
-                            text += i18n(feature.properties.streets[index]);
+                            text += i18n.streets(feature.properties.streets[index]);
                             text += ((feature.properties.streets.length - index > 1) ? ', ' : '');
                         }
                         text += '</p>';
@@ -371,10 +371,10 @@
 
                     if (feature.properties.streets && feature.properties.streets.length) {
                         text += '<p>';
-                        text += feature.properties.streets.length > 1 ? 'Вулиці: ' : 'Вулиця: ';
+                        text += feature.properties.streets.length > 1 ? i18n.map('streets') : i18n.map('street');
 
                         for (index in feature.properties.streets) {
-                            text += i18n(feature.properties.streets[index]);
+                            text += i18n.streets(feature.properties.streets[index]);
                             text += ((feature.properties.streets.length - index > 1) ? ', ' : '');
                         }
                         text += '</p>';
@@ -450,16 +450,16 @@
 
                     if (feature.properties.streets && feature.properties.streets.length) {
                         text += '<p>';
-                        text += feature.properties.streets.length > 1 ? 'Вулиці: ' : 'Вулиця: ';
+                        text += feature.properties.streets.length > 1 ? i18n.map('streets') : i18n.map('street');
                         for (index in feature.properties.streets) {
-                            text += i18n(feature.properties.streets[index]);
+                            text += i18n.streets(feature.properties.streets[index]);
                             text += ((feature.properties.streets.length - index > 1) ? ', ' : '');
                         }
                         text += '</p>';
                     }
 
-                    text += '<p>Довжина: ' + feature.properties.length.toFixed(2) + ' м.</p>';
-                    text += '<p>Категорія: ' + i18n(feature.properties.category) + '</p>';
+                    text += '<p>' + i18n.map('length') + feature.properties.length.toFixed(2) + i18n.map('m') + '</p>';
+                    text += '<p>' + i18n.map('category') + i18n.facades(feature.properties.category) + '</p>';
 
                     layer.bindPopup(text);
                     layer.options.lineCap = 'butt';
@@ -535,60 +535,6 @@
                         });
                     }
                 }
-            }
-
-            function i18n(string) {
-                var dict = {
-                    'roads': 'Дороги',
-                    'yards': 'Подвір\'я',
-                    'buildings': 'Будівлі',
-                    'firstFloorFunction': 'Функція першого поверху',
-                    'cars': 'Автомобілі',
-                    'carsDay': 'Автомобілі(вдень)',
-                    'carsNight': 'Автомобілі(вночі)',
-                    'trees': 'Дерева',
-                    'hard_to_reach': 'Важкодоступні',
-                    'open': 'Відкриті',
-                    'unreachable': 'Недосяжні',
-                    'office': 'Офіси',
-                    'cafe': 'Кафе',
-                    'garage': 'Гаражі',
-                    'culture': 'Культура',
-                    'housing': 'Житло',
-                    'ruin': 'Руїни',
-                    'facades': 'Фасади',
-                    'tolerable': 'Задовільний',
-                    'inactive': 'Неактивний',
-                    'monument': 'Пам’ятка',
-                    'dopey': 'Млявий',
-                    'hole': 'Проїзд',
-                    'active': 'Активний',
-                    'green': 'Озеленення',
-                    'nothing': 'Ніякий',
-                    'Lypynskoho': 'Липинського',
-                    'Volodymyrskyi': 'Володимирський',
-                    'Striletska': 'Стрілецька',
-                    'Franka': 'Івана Франка',
-                    'Zolotovoritska': 'Золотоворітська',
-                    'Reitarska': 'Рейтарська',
-                    'Kotsiubynskoho': 'Коцюбинського',
-                    'Sofiivska': 'Софіївська',
-                    'Stritenska': 'Стрітенська',
-                    'Irynynska': 'Ірининська',
-                    'Honchara': 'Гончара',
-                    'Velyka_Zhytomyrska': 'Велика Житомирська',
-                    'Khmelnytskogo': 'Хмельницького',
-                    'Rylskyi_prov': 'Рильський провулок',
-                    'Malopidvalna': 'Малопідвальна',
-                    'Prorizna': 'Прорізна',
-                    'Volodymyrska': 'Володимирська',
-                    'Lysenka': 'Лисенка',
-                    'Yaroslaviv_Val': 'Ярославів вал',
-                    'Bulvarno_Kudriavska': 'Бульварно-Кудрявська',
-                    'Heorhiivskyi': 'Георгіївський'
-                };
-
-                return dict[string];
             }
         }
     }]);

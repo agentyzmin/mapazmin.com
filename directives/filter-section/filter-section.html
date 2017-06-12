@@ -9,18 +9,20 @@
 
 <div></div>
 
+<!--
 <input type="checkbox" class="yarval-checkbox" id="filter__section-floor-switch-{{ ::id }}" ng-model="activeFilter.allFloors" />
 <label ng-if="::activeFilter.hasFloorSelector" class="yarval-checkbox" for="filter__section-floor-switch-{{ ::id }}">
     <span>1 поверх</span>
     <div class="yarval-checkbox__slider"></div>
     <span>Всі поверхи</span>
 </label>
+-->
 
 <div class="filter-values">
     <div class="filter-values__group">
         <label>
             <input type="checkbox" ng-model="allCheckedFilters[activeFilter.id]" ng-click="checkAll(activeFilter)">
-            <span>Всі</span>
+            <span>{{ ::i18n.common('allFilters') }}</span>
         </label>
     </div>
 
