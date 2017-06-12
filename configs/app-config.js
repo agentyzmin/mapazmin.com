@@ -27,9 +27,6 @@
                 facadeActive: '#0990C6',
                 facadeInactive: '#F06251',
                 facadeDopey: '#EDA156',
-                facadeGreen: '#478456',
-                facadeHole: '#E2E2E2',
-                facadeMonument: '#A082A3',
                 facadeNothing: '#EFD8B8',
                 facadeTolerable: '#84B7E3'
             }

@@ -142,7 +142,7 @@
                         id: 'tolerable',
                         name: 'Задовільний',
                         color: appConfig.colors.facadeTolerable,
-                        value: 2888.91
+                        value: 3377.67
                     },
                     {
                         id: 'nothing',
@@ -161,24 +161,6 @@
                         name: 'Неактивний',
                         color: appConfig.colors.facadeInactive,
                         value: 1899.50
-                    },
-                    {
-                        id: 'monument',
-                        name: 'Пам’ятка',
-                        color: appConfig.colors.facadeMonument,
-                        value: 495.76
-                    },
-                    {
-                        id: 'green',
-                        name: 'Озеленення',
-                        color: appConfig.colors.facadeGreen,
-                        value: 1605.97
-                    },
-                    {
-                        id: 'hole',
-                        name: 'Проїзд',
-                        color: appConfig.colors.facadeHole,
-                        value: 574
                     }
                 ];
 

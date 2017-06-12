@@ -87,18 +87,6 @@
                     {
                         id: 'inactive',
                         name: 'Неактивний'
-                    },
-                    {
-                        id: 'monument',
-                        name: 'Пам’ятка'
-                    },
-                    {
-                        id: 'green',
-                        name: 'Озеленення'
-                    },
-                    {
-                        id: 'hole',
-                        name: 'Проїзд'
                     }
                 ]
             }
