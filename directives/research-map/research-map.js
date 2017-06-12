@@ -477,15 +477,6 @@
                         case 'dopey':
                             return appConfig.colors.facadeDopey;
 
-                        case 'green':
-                            return appConfig.colors.facadeGreen;
-
-                        case 'hole':
-                            return appConfig.colors.facadeHole;
-
-                        case 'monument':
-                            return appConfig.colors.facadeMonument;
-
                         case 'nothing':
                             return appConfig.colors.facadeNothing;
 
