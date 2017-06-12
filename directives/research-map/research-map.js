@@ -22,6 +22,12 @@
 
             init();
 
+            $scope.$watch(function() {
+                return $element.height();
+            }, function() {
+                map.invalidateSize();
+            });
+
             $scope.$watch('facadesOptions', function(val) {
                 if (typeof val === 'object') {
                     filterFacades(val);
