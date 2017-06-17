@@ -108,7 +108,8 @@
         function i18n(set) {
             return function(key) {
                 if (!set[key]) {
-                    console.error('i18n: Key not found: ' + key);
+                    console.warn('i18n: Key not found: ' + key);
+                    return '';
                 }
 
                 return set[key];
