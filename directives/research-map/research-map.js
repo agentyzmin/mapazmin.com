@@ -212,7 +212,7 @@
 
                 function style(feature) {
                     return {
-                        color: appConfig.colors.buildingsBorder,
+                        color: getColor(feature.properties.floors[1]),
                         opacity: 1,
                         weight: 1,
                         smoothFactor: 1,

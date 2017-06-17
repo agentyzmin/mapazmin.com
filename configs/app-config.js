@@ -17,7 +17,6 @@
                 treesS: '#91C497',
                 treesM: '#91C497',
                 treesL: '#91C497',
-                buildingsBorder: '#AAB3BE',
                 buildingsRuin: '#565656',
                 buildingsHousing: '#FFF6CF',
                 buildingsCulture: '#4390FC',
