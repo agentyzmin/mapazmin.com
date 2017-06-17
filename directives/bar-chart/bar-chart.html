@@ -4,6 +4,8 @@
      title="{{ ::option.text }}"
 >{{ ::option.text }}</div>
 
+<div ng-show="!stats.options.length" class="chart__bar chart__bar_empty">&nbsp;</div>
+
 <div class="chart__total">
     <p>{{ ::i18n.common('chartTotal') }}</p>
     <p>{{ stats.total }}</p>

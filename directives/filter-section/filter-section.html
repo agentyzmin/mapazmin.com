@@ -21,7 +21,7 @@
 <div class="filter-values">
     <div class="filter-values__group">
         <label>
-            <input type="checkbox" ng-model="allCheckedFilters[activeFilter.id]" ng-click="checkAll(activeFilter)">
+            <input type="checkbox" ng-model="allButtonState[activeFilter.id]" ng-click="checkAll(activeFilter)">
             <span>{{ ::i18n.common('allFilters') }}</span>
         </label>
     </div>

@@ -18,7 +18,7 @@
         function link($scope, $element, $attrs) {
             $scope.i18n = i18n;
             $scope.id = $scope.$id;
-            $scope.allCheckedFilters = {};
+            $scope.allButtonState = {};
 
             $scope.filterBy = filterBy;
             $scope.onFilterValueChange = onFilterValueChange;
@@ -34,7 +34,11 @@
                     $scope.activeFilter = filter;
                 }
 
-                $scope.allCheckedFilters[filter.id] = isAllChecked(filter);
+                filter.options.forEach(function(option) {
+                    option.isChecked = true;
+                });
+
+                $scope.allButtonState[filter.id] = true;
             });
 
             function filterBy(filter) {
@@ -47,15 +51,17 @@
             }
 
             function onFilterValueChange(filter) {
-                $scope.allCheckedFilters[filter.id] = isAllChecked(filter);
+                $scope.allButtonState[filter.id] = isAllChecked(filter);
             }
 
             function checkAll(filter) {
-                $scope.allCheckedFilters[filter.id] = true;
+                var state = !isAllChecked(filter);
 
                 filter.options.forEach(function(option) {
-                    option.isChecked = false;
+                    option.isChecked = state;
                 });
+
+                $scope.allButtonState[filter.id] = state;
             }
         }
 
@@ -63,7 +69,7 @@
             var result = true;
 
             filter.options.forEach(function(option) {
-                if (option.isChecked) {
+                if (!option.isChecked) {
                     result = false;
                 }
             });

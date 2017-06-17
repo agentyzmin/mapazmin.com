@@ -171,25 +171,10 @@
         $scope.$watch('areaFilter', updateAreaData, true);
         $scope.$watch('objectsFilter', updateObjectsData, true);
 
-        function isAllChecked(options) {
-            var i,
-                len = options.length;
-
-            for (i = 0; i < len; ++i) {
-                if (options[i].isChecked) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         function getSelectedOptions(options) {
-            var isAll = isAllChecked(options);
-
             return options
                 .filter(function(option) {
-                    return (isAll || option.isChecked) ;
+                    return option.isChecked;
                 })
                 .map(function(option) {
                     return option.id;
