@@ -610,7 +610,7 @@
 
             function getJSON(url, cb) {
                 return $.ajax({
-                    url: url,
+                    url: url + '?build=' + build,
                     success: cb,
                     dataType: 'json'
                 });
