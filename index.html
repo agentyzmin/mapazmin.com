@@ -4,7 +4,6 @@
     <base href="/">
     <meta charset="UTF-8">
     <title>Дослідницька мапа Ярвалу</title>
-    <link rel="stylesheet" href="style.css">
 
     <script>L_PREFER_CANVAS = true;</script>
     <script>build = 1;</script>
@@ -12,7 +11,8 @@
 
 <body class="page">
     <div ng-view></div>
-    <script src="app.bundle.js?build=1"></script>
+    <script src="app.bundle.js?build=1" async></script>
+    <link rel="stylesheet" href="style.css">
 </body>
 
 </html>

@@ -1,9 +1,11 @@
-var gulp = require('gulp'),
+var del = require('del'),
+    gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     change = require('gulp-change'),
-    del = require('del'),
+    htmlmin = require('gulp-htmlmin'),
+    cleanCSS = require('gulp-clean-css'),
     less = require('gulp-less');
 
 gulp.task('default', ['watch']);
@@ -15,7 +17,7 @@ gulp.task('watch', ['build-css', 'build-js-bundle'], function() {
     gulp.watch('./{configs,directives,factories,libs,pages}/**/*.js', ['build-js-bundle']);
 });
 
-gulp.task('release', ['build-css-min', 'build-js-bundle-min', 'build-index-html', 'copy-required-files']);
+gulp.task('release', ['build-css-min', 'build-js-bundle-min', 'build-index-html', 'minify-html', 'copy-required-files']);
 
 gulp.task('clean-release', function() {
     return del([
@@ -37,7 +39,8 @@ gulp.task('build-css', function() {
 
 gulp.task('build-css-min', function() {
     return gulp
-        .src(['./style.css']) // TODO: minify
+        .src(['./style.css'])
+        .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('./release/'));
 });
 
@@ -97,6 +100,7 @@ gulp.task('build-index-html', function() {
     return gulp
         .src(['./index.html'])
         .pipe(change(replace))
+        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('./release/'));
 
     function replace(content, done) {
@@ -107,11 +111,19 @@ gulp.task('build-index-html', function() {
     }
 });
 
-gulp.task('copy-required-files', function() {
+gulp.task('minify-html', function() {
     return gulp
         .src([
             './directives/**/*.html',
-            './pages/**/*.html',
+            './pages/**/*.html'
+        ], { base: './' })
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest('./release'));
+});
+
+gulp.task('copy-required-files', function() {
+    return gulp
+        .src([
             './geojson/*.json',
             './fonts/*',
             './.htaccess'
