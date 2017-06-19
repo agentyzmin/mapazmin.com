@@ -1,7 +1,9 @@
 (function() {
     'use strict';
 
-    var module = angular.module('app.research.map', ['app.config', 'app.i18n']);
+    var module = angular.module('app.research.map', ['app.config', 'app.i18n']),
+        IN_PROGRESS_STATE = 1,
+        READY_STATE = 2;
 
     module.directive('researchMap', ['appConfig', '$timeout', '$window', 'i18n', function(appConfig, $timeout, window, i18n) {
         return {
@@ -18,7 +20,8 @@
         };
 
         function link($scope, $element, $attrs) {
-            var map, layerGroups;
+            var map, layerGroups,
+                loadedData = {};
 
             init();
 
@@ -101,13 +104,6 @@
                 for (i = 0; i < layerGroups.length; ++i) {
                     layerGroups[i].name = layerNames[i];
                 }
-
-                $.get('geojson/roads.json', initRoads);
-                $.get('geojson/yards.json', initYards);
-                $.get('geojson/first_floor_function.json', initBuildings);
-                $.get('geojson/cars.json', initCars);
-                $.get('geojson/trees.json', initTrees);
-                $.get('geojson/facades.json', initFacades);
             }
 
             function initRoads(geoJSON) {
@@ -120,12 +116,25 @@
                     smoothFactor: 1
                 });
 
+                loadedData.roads = READY_STATE;
+
                 copyLayers(geoJSONLayer, layerGroups.roads);
                 layerGroups.roads.addTo(map);
                 filterRoads($scope.showRoads);
             }
 
             function filterRoads(isVisible) {
+                // Loader
+                if (loadedData.roads === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (isVisible && !loadedData.roads) {
+                    loadedData.roads = IN_PROGRESS_STATE;
+                    getJSON('geojson/roads.json', initRoads);
+                    return;
+                }
+
                 layerGroups.roads.eachLayer(function(data) {
                     if (!isVisible) {
                         data.options.opacity = 0;
@@ -146,6 +155,8 @@
                     style: style,
                     onEachFeature: onEachFeature
                 });
+
+                loadedData.yards = READY_STATE;
 
                 copyLayers(geoJSONLayer, layerGroups.yards);
                 layerGroups.yards.addTo(map);
@@ -183,6 +194,17 @@
             }
 
             function filterYards(options) {
+                // Loader
+                if (loadedData.yards === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (options.length && !loadedData.yards) {
+                    loadedData.yards = IN_PROGRESS_STATE;
+                    getJSON('geojson/yards.json', initYards);
+                    return;
+                }
+
                 layerGroups.yards.eachLayer(function(data) {
                     var category = data.feature.properties && data.feature.properties.category;
 
@@ -205,6 +227,8 @@
                     style: style,
                     onEachFeature: onEachFeature
                 });
+
+                loadedData.buildings = READY_STATE;
 
                 copyLayers(geoJSONLayer, layerGroups.buildings);
                 layerGroups.buildings.addTo(map);
@@ -267,6 +291,17 @@
             }
 
             function filterBuildings(options) {
+                // Loader
+                if (loadedData.buildings === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (options.length && !loadedData.buildings) {
+                    loadedData.buildings = IN_PROGRESS_STATE;
+                    getJSON('geojson/first_floor_function.json', initBuildings);
+                    return;
+                }
+
                 layerGroups.buildings.eachLayer(function(data) {
                     var category = data.feature.properties && data.feature.properties.floors[1];
 
@@ -289,6 +324,8 @@
                     style: style,
                     onEachFeature: onEachFeature
                 });
+
+                loadedData.cars = READY_STATE;
 
                 copyLayers(geoJSONLayer, layerGroups.cars);
                 layerGroups.cars.addTo(map);
@@ -331,6 +368,17 @@
                 var showParkerOnYard = options.indexOf('yard') !== -1,
                     showParkerOnStreet = options.indexOf('street') !== -1;
 
+                // Loader
+                if (loadedData.cars === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (options.length && !loadedData.cars) {
+                    loadedData.cars = IN_PROGRESS_STATE;
+                    getJSON('geojson/cars.json', initCars);
+                    return;
+                }
+
                 layerGroups.cars.eachLayer(function(data) {
                     var onStreet = data.feature.properties.streets && data.feature.properties.streets.length,
                         onYard = !onStreet;
@@ -354,6 +402,8 @@
                     pointToLayer: pointToLayer,
                     onEachFeature: onEachFeature
                 });
+
+                loadedData.trees = READY_STATE;
 
                 copyLayers(geoJSONLayer, layerGroups.trees);
                 layerGroups.trees.addTo(map);
@@ -403,6 +453,17 @@
             }
 
             function filterTrees(options) {
+                // Loader
+                if (loadedData.trees === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (options.length && !loadedData.trees) {
+                    loadedData.trees = IN_PROGRESS_STATE;
+                    getJSON('geojson/trees.json', initTrees);
+                    return;
+                }
+
                 layerGroups.trees.eachLayer(function(data) {
                     var size,
                         radius = data.feature.properties.radius;
@@ -436,6 +497,8 @@
                     style: style,
                     onEachFeature: onEachFeature
                 });
+
+                loadedData.facades = READY_STATE;
 
                 copyLayers(geoJSONLayer, layerGroups.facades);
                 layerGroups.facades.addTo(map);
@@ -496,6 +559,17 @@
             }
 
             function filterFacades(options) {
+                // Loader
+                if (loadedData.facades === IN_PROGRESS_STATE) {
+                    return;
+                }
+
+                if (options.length && !loadedData.facades) {
+                    loadedData.facades = IN_PROGRESS_STATE;
+                    getJSON('geojson/facades.json', initFacades);
+                    return;
+                }
+
                 layerGroups.facades.eachLayer(function(data) {
                     var category = data.feature.properties && data.feature.properties.category;
 
@@ -532,6 +606,14 @@
                         });
                     }
                 }
+            }
+
+            function getJSON(url, cb) {
+                return $.ajax({
+                    url: url,
+                    success: cb,
+                    dataType: 'json'
+                });
             }
         }
     }]);

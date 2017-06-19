@@ -125,7 +125,6 @@
             {
                 id: 'parking',
                 name: i18n.parking('filterName'),
-                isChecked: true,
                 options: [
                     {
                         id: 'yard',
@@ -140,6 +139,7 @@
             {
                 id: 'trees',
                 name: i18n.trees('filterName'),
+                isChecked: true,
                 options: [
                     {
                         id: 'l',
