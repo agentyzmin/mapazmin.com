@@ -35,10 +35,10 @@
                 }
 
                 filter.options.forEach(function(option) {
-                    option.isChecked = true;
+                    option.isChecked = false;
                 });
 
-                $scope.allButtonState[filter.id] = true;
+                filter.isAllChecked = true;
             });
 
             function filterBy(filter) {
@@ -51,21 +51,27 @@
             }
 
             function onFilterValueChange(filter) {
-                $scope.allButtonState[filter.id] = isAllChecked(filter);
+                var isAllSelected = isAllOptionsChecked(filter);
+
+                if (isAllSelected) {
+                    filter.options.forEach(function(option) {
+                        option.isChecked = false;
+                    });
+
+                    filter.isAllChecked = true;
+                } else {
+                    filter.isAllChecked = false;
+                }
             }
 
             function checkAll(filter) {
-                var state = !isAllChecked(filter);
-
                 filter.options.forEach(function(option) {
-                    option.isChecked = state;
+                    option.isChecked = false;
                 });
-
-                $scope.allButtonState[filter.id] = state;
             }
         }
 
-        function isAllChecked(filter) {
+        function isAllOptionsChecked(filter) {
             var result = true;
 
             filter.options.forEach(function(option) {

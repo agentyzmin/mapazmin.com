@@ -171,10 +171,13 @@
         $scope.$watch('areaFilter', updateAreaData, true);
         $scope.$watch('objectsFilter', updateObjectsData, true);
 
-        function getSelectedOptions(options) {
+        function getSelectedOptions(filter) {
+            var allChecked = filter.isAllChecked,
+                options = filter.options;
+
             return options
                 .filter(function(option) {
-                    return option.isChecked;
+                    return option.isChecked || allChecked;
                 })
                 .map(function(option) {
                     return option.id;
@@ -182,7 +185,7 @@
         }
 
         function updatePeopleData() {
-            var selectedOptions = getSelectedOptions($scope.peopleFilter[0].options);
+            var selectedOptions = getSelectedOptions($scope.peopleFilter[0]);
 
             $scope.peopleStat = researchStat.getPeopleStat(selectedOptions, $scope.isAbsoluteValues);
         }
@@ -202,19 +205,19 @@
 
             switch (activeFilter.id) {
                 case 'facades':
-                    $scope.facadesOptions = getSelectedOptions(activeFilter.options);
+                    $scope.facadesOptions = getSelectedOptions(activeFilter);
                     $scope.buildingsStat = researchStat.getFacadesStat($scope.facadesOptions, $scope.isAbsoluteValues);
                     return;
 
                 case 'buildings':
-                    $scope.buildingsOptions = getSelectedOptions(activeFilter.options);
+                    $scope.buildingsOptions = getSelectedOptions(activeFilter);
                     $scope.buildingsStat = researchStat.getBuildingsStat($scope.buildingsOptions, $scope.isAbsoluteValues);
                     return;
             }
         }
 
         function updateAreaData() {
-            var selectedOptions = getSelectedOptions($scope.areaFilter[0].options);
+            var selectedOptions = getSelectedOptions($scope.areaFilter[0]);
 
             $scope.showRoads = (selectedOptions.indexOf('roads') !== -1);
             $scope.yardsOptions = selectedOptions.filter(function (option) {
@@ -239,12 +242,12 @@
 
             switch (activeFilter.id) {
                 case 'parking':
-                    $scope.carsOptions = getSelectedOptions(activeFilter.options);
+                    $scope.carsOptions = getSelectedOptions(activeFilter);
                     $scope.objectsStats = researchStat.getCarsStat($scope.carsOptions, $scope.isAbsoluteValues);
                     return;
 
                 case 'trees':
-                    $scope.treesOptions = getSelectedOptions(activeFilter.options);
+                    $scope.treesOptions = getSelectedOptions(activeFilter);
                     $scope.objectsStats = researchStat.getTreesStat($scope.treesOptions, $scope.isAbsoluteValues);
                     return;
             }
