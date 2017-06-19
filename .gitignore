@@ -1,4 +1,7 @@
 .idea
 node_modules
-style.css
 fonts
+release
+style.css
+app.bundle.js
+*.tmp

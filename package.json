@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "devDependencies": {
+    "del": "^3.0.0",
     "express": "^4.13.3",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
+    "gulp-change": "^1.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-less": "^3.3.0",
     "gulp-rename": "^1.2.2",
