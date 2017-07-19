@@ -24,6 +24,8 @@
             $scope.onFilterValueChange = onFilterValueChange;
             $scope.checkAll = checkAll;
 
+            $scope.isDisabled = $element.hasClass('filters__section_disabled');
+
             if (!$scope.filters) {
                 console.error('Filters are not set. Element ', $element);
                 return;

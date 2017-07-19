@@ -5,6 +5,17 @@
 
     module.factory('researchStat', ['appConfig', 'i18n', function(appConfig, i18n) {
         function getPeopleStat(filter, isAbsolute) {
+            // Temporary placeholder
+            return {
+                options: [
+                    {
+                        width: 100,
+                        text: i18n.people('people')
+                    }
+                ],
+                total: '100%'
+            };
+
             var summary = 0,
                 filtered = 0,
                 options = [

@@ -1,0 +1,37 @@
+@import "font";
+
+.footer {
+    font-size: 16px;
+    line-height: 28px;
+    white-space: nowrap;
+
+    a {
+        cursor: pointer;
+        color: rgb(55, 159, 212);
+        text-decoration: none;
+    }
+}
+
+.footer__left,
+.footer__right {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+}
+
+.footer__left {
+    width: calc(~"100% - 200px");
+}
+
+.footer__right {
+    width: 150px;
+    padding-left: 50px;
+}
+
+.footer__bold {
+    .font-bold;
+}
+
+.footer__date {
+    margin-top: 10px;
+}

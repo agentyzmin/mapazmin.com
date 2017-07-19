@@ -3,19 +3,22 @@
 
     var module = angular.module('app.i18n', []);
 
-    module.factory('i18n', [function() {
-        var common, map, people, buildings, facades, accessibility, parking, trees, streets;
+    module.factory('i18n', ['$sce', function($sce) {
+        var common, map, people, buildings, facades, accessibility, parking, trees, streets, footer;
 
         common = {
             homePageTitle: 'Мапа змін',
+            homePageSubTitle: 'Інструмент для оцінки міських даних',
             chartTotal: 'Всього:',
             allFilters: 'Всі',
+            value: 'Значення:',
             absolute: 'Абсолютно',
-            percent: 'Відсотки',
-            peopleFilterTitle: 'Люди',
-            buildingsFilterTitle: 'Будівлі',
-            areaFilterTitle: 'Територія',
-            objectsFilterTitle: 'Об’єкти'
+            percent: 'У відсотках',
+            peopleFilterTitle: 'Люди:',
+            buildingsFilterTitle: 'Будівлі:',
+            areaFilterTitle: 'Територія:',
+            objectsFilterTitle: 'Об’єкти:',
+            researchInProgress: 'Дослідження триває',
         };
 
         map = {
@@ -33,7 +36,8 @@
             students: 'Учні',
             workers: 'Працівники',
             residents: 'Мешканці',
-            unit: 'осіб'
+            unit: 'осіб',
+            people: 'Люди'
         };
 
         buildings = {
@@ -105,6 +109,21 @@
             'Heorhiivskyi': 'Георгіївський'
         };
 
+        footer = {
+            left: $sce.trustAsHtml(
+                'Мапу зробили «Агенти змін» для дослідження околиці вулиці Ярославів Вал в Києві. ' +
+                'На основі цих даних ми розробимо проект оновлення. ' +
+                'Більше про проект <a href="https://fb.com/agentyzmin">у фесбуці</a>.'
+            ),
+            right: $sce.trustAsHtml(
+                '<p>Агенти змін</p>' +
+                '<p><a href="https://a3.kyiv.ua">a3.kyiv.ua</a></p>' +
+                '<p><a href="https://fb.com/agentyzmin">fb.com/agentyzmin</a></p>'
+            ),
+            title: $sce.trustAsHtml('Про проект'),
+            date: $sce.trustAsHtml('2017')
+        };
+
         function i18n(set) {
             return function(key) {
                 if (!set[key]) {
@@ -125,7 +144,8 @@
             accessibility: i18n(accessibility),
             parking: i18n(parking),
             trees: i18n(trees),
-            streets: i18n(streets)
+            streets: i18n(streets),
+            footer: i18n(footer)
         }
     }]);
 }());

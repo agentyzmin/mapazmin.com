@@ -3,41 +3,60 @@
 
     display: inline-block;
     width: 50%;
-    padding: 57px 0 0 73px;
+    padding: 37px 20px 0 53px;
 
     overflow: hidden;
     vertical-align: top;
 
-    h1, h3 {
+    h1, h2, h3 {
         font-size: 28px;
         .font-bold;
     }
 
-    h1 {
-        margin-bottom: 65px;
+    h2 {
+        font-size: 17px;
+        margin-bottom: 7px;
+        margin-top: 2px;
+        .font-medium;
     }
 
     h3 {
         display: inline-block;
         font-size: 21px;
-        margin-right: 15px;
+        margin-right: 22px;
     }
 
     .filter-values {
         margin: 25px 0 21px;
     }
+
+    .footer {
+        margin-top: 50px;
+    }
 }
 
 .filters__absolute {
-    position: absolute;
+    float: right;
+    margin-bottom: 14px;
+}
 
-    right: 73px;
-    top: 68px;
+.filters__absolute-title {
+    margin-right: 10px;
+    font-size: 12px;
+    vertical-align: middle;
+    .font-bold;
 }
 
 .filters__section {
     position: relative;
-    margin-bottom: 82px;
+    margin-bottom: 10px;
+    padding: 24px 19px;
+
+    border: 1px solid rgb(197, 198, 196);
+    border-radius: 5px;
+
+    background: #FFF;
+    clear: both;
 
     .yarval-checkbox {
         position: absolute;
@@ -47,6 +66,39 @@
 
     &:last-child {
         margin-bottom: 0;
+    }
+}
+
+.filters__section-in-progress {
+    display: none;
+    margin-left: 16px;
+    padding: 4px 8px;
+    vertical-align: top;
+
+    background: rgb(133,136,133);
+    color: #FFF;
+    font-size: 13px;
+}
+
+.filters__section_disabled {
+    background: rgb(243, 245, 241);
+
+    .filters__section-in-progress {
+        display: inline-block;
+    }
+
+    .filter-by,
+    .filter-values {
+        display: none;
+    }
+
+    .chart {
+        margin-top: 25px;
+
+        .chart__bar {
+            border-top-color: rgb(236, 235, 239);
+            color: #6f726e;
+        }
     }
 }
 

@@ -1,17 +1,21 @@
 <div class="filters">
-    <input class="yarval-checkbox" type="checkbox" id="is_absolute_values" ng-model="isAbsoluteValues" ng-value="true">
-    <label class="filters__absolute yarval-checkbox" for="is_absolute_values">
-        <span>{{ ::i18n.common('percent') }}</span>
-        <div class="yarval-checkbox__slider"></div>
-        <span>{{ ::i18n.common('absolute') }}</span>
-    </label>
-
     <h1>{{ ::i18n.common('homePageTitle') }}</h1>
+    <h2>{{ ::i18n.common('homePageSubTitle' )}}</h2>
 
-    <div class="filters__section" filter-section data-title="{{ ::i18n.common('peopleFilterTitle') }}" data-filters="::peopleFilter" data-stats="peopleStat"></div>
+    <div class="filters__absolute">
+        <span class="filters__absolute-title">{{ ::i18n.common('value') }}</span>
+        <input class="yarval-checkbox" type="checkbox" id="is_absolute_values" ng-model="isAbsoluteValues" ng-value="true">
+        <label class="yarval-checkbox" for="is_absolute_values">
+            <span>{{ ::i18n.common('percent') }}</span>
+            <div class="yarval-checkbox__slider"></div>
+            <span>{{ ::i18n.common('absolute') }}</span>
+        </label>
+    </div>
+
     <div class="filters__section" filter-section data-title="{{ ::i18n.common('buildingsFilterTitle') }}" data-filters="::buildingsFilter" data-stats="buildingsStat"></div>
     <div class="filters__section" filter-section data-title="{{ ::i18n.common('areaFilterTitle') }}" data-filters="::areaFilter" data-stats="areaStats"></div>
     <div class="filters__section" filter-section data-title="{{ ::i18n.common('objectsFilterTitle') }}" data-filters="::objectsFilter" data-stats="objectsStats"></div>
+    <div class="filters__section filters__section_disabled" filter-section data-title="{{ ::i18n.common('peopleFilterTitle') }}" data-filters="::peopleFilter" data-stats="peopleStat"></div>
 
     <!--
     <div class="filters__line"></div>
@@ -21,6 +25,15 @@
         <p>1 людина — 50 000 м<sup>2</sup> — 350 000 м<sup>2</sup> — 439 лавок</p>
     </div>
     -->
+
+    <div class="footer">
+        <p class="footer__bold" ng-bind-html="::i18n.footer('title')"></p>
+        <div class="footer__left">
+            <p ng-bind-html="::i18n.footer('left')"></p>
+            <p class="footer__date" ng-bind-html="::i18n.footer('date')"></p>
+        </div><!--
+        --><div class="footer__right" ng-bind-html="::i18n.footer('right')"></div>
+    </div>
 </div><!--
 
 --><div class="map"
