@@ -121,7 +121,7 @@
                 var text;
 
                 if (isAbsolute) {
-                    text = option.name + ' - ' + option.value + ' ' + i18n.buildings('unit');
+                    text = option.name + ' - ' + Math.round(option.value * 0.0001 * 100) / 100 + ' ' + i18n.buildings('unit');
                 } else {
                     text = option.name + ' - ' + Math.round(option.value / summary * 100) + '%'
                 }
@@ -135,7 +135,7 @@
 
             return {
                 options: options,
-                total: isAbsolute ? Math.round(filtered) + ' ' + i18n.buildings('unit') : Math.round(filtered / summary * 100) + '%'
+                total: isAbsolute ? Math.round(filtered * 0.0001 * 100) / 100 + ' ' + i18n.buildings('unit') : Math.round(filtered / summary * 100) + '%'
             }
         }
 
@@ -188,7 +188,7 @@
                 var text;
 
                 if (isAbsolute) {
-                    text = option.name + ' - ' + option.value + ' ' + i18n.facades('unit');
+                    text = option.name + ' - ' + Math.round(option.value * 0.001 * 100) / 100 + ' ' + i18n.facades('unit');
                 } else {
                     text = option.name + ' - ' + Math.round(option.value / summary * 100) + '%'
                 }
@@ -202,7 +202,7 @@
 
             return {
                 options: options,
-                total: isAbsolute ? Math.round(filtered) + ' ' + i18n.facades('unit') : Math.round(filtered / summary * 100) + '%'
+                total: isAbsolute ? Math.round(filtered * 0.001 * 100) / 100 + ' ' + i18n.facades('unit') : Math.round(filtered / summary * 100) + '%'
             }
         }
 
@@ -210,12 +210,6 @@
             var summary = 0,
                 filtered = 0,
                 options = [
-                    {
-                        id: 'roads',
-                        name: i18n.accessibility('roads'),
-                        color: appConfig.colors.roads,
-                        value: 115546
-                    },
                     {
                         id: 'open',
                         name: i18n.accessibility('open'),
@@ -233,6 +227,12 @@
                         name: i18n.accessibility('unreachable'),
                         color: appConfig.colors.accessibilityUnreachable,
                         value: 184953
+                    },
+                    {
+                        id: 'roads',
+                        name: i18n.accessibility('roads'),
+                        color: appConfig.colors.roads,
+                        value: 115546
                     }
                 ];
 
@@ -249,7 +249,7 @@
                 var text;
 
                 if (isAbsolute) {
-                    text = option.name + ' - ' + option.value + ' ' + i18n.accessibility('unit');
+                    text = option.name + ' - ' + Math.round(option.value * 0.0001 * 100) / 100 + ' ' + i18n.accessibility('unit');
                 } else {
                     text = option.name + ' - ' + Math.round(option.value / summary * 100) + '%'
                 }
@@ -263,7 +263,7 @@
 
             return {
                 options: options,
-                total: isAbsolute ? Math.round(filtered) + ' ' + i18n.accessibility('unit') : Math.round(filtered / summary * 100) + '%'
+                total: isAbsolute ? Math.round(filtered * 0.0001 * 100) / 100 + ' ' + i18n.accessibility('unit') : Math.round(filtered / summary * 100) + '%'
             }
         }
 

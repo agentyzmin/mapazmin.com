@@ -18,7 +18,7 @@
             buildingsFilterTitle: 'Будівлі:',
             areaFilterTitle: 'Територія:',
             objectsFilterTitle: 'Об’єкти:',
-            researchInProgress: 'Дослідження триває',
+            researchInProgress: 'Дослідження триває'
         };
 
         map = {
@@ -48,7 +48,7 @@
             garage: 'Гаражі',
             cafe: 'Кафе',
             office: 'Офіси',
-            unit: 'м2'
+            unit: 'га'
         };
 
         facades = {
@@ -58,23 +58,23 @@
             nothing: 'Змішаний',
             dopey: 'Нудний',
             inactive: 'Неактивний',
-            unit: 'м.'
+            unit: 'км'
         };
 
         accessibility = {
-            filterName: 'Доступність',
+            filterName: 'Відкритість',
             roads: 'Дороги',
-            open: 'Легкодосяжні',
-            hardToReach: 'Важкодоступні',
-            unreachable: 'Недосяжні',
-            unit: 'м2'
+            open: 'Відкрита',
+            hardToReach: 'Обмежений доступ',
+            unreachable: 'Закрита',
+            unit: 'га'
         };
 
         parking = {
             filterName: 'Парковки',
             yard: 'Подвір’я',
             street: 'Вулиця',
-            unit: 'од.'
+            unit: 'од'
         };
 
         trees = {
@@ -82,7 +82,7 @@
             l: 'Великі',
             m: 'Середні',
             s: 'Малі',
-            unit: 'од.'
+            unit: 'од'
         };
 
         streets = {
@@ -112,8 +112,8 @@
         footer = {
             left: $sce.trustAsHtml(
                 'Мапу зробили «Агенти змін» для дослідження околиці вулиці Ярославів Вал в Києві. ' +
-                'На основі цих даних ми розробимо проект оновлення. ' +
-                'Більше про проект <a href="https://fb.com/agentyzmin">у фесбуці</a>.'
+                'На основі цих даних ми розробимо проект її оновлення. ' +
+                'Більше про проект <a href="https://www.facebook.com/new.yarval/">у фейсбуці</a>.'
             ),
             right: $sce.trustAsHtml(
                 '<p>Агенти змін</p>' +

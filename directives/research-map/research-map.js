@@ -164,7 +164,7 @@
 
                 function style(feature) {
                     return {
-                        color: appConfig.colors.yardsBorder,
+                        color: getColor(feature.properties.category),
                         opacity: 1,
                         weight: 1,
                         smoothFactor: 1,

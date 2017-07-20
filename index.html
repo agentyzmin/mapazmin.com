@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <title>Дослідницька мапа Ярвалу</title>
 
+    <meta property="og:url" content="http://yarval-demo.veikus.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Мапа змін" />
+    <meta property="og:description" content="Інструмент для оцінки міських даних" />
+    <meta property="og:image" content="http://yarval-demo.veikus.com/img/og-image.png" />
+
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-24x24.png" sizes="24x24">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-64x64.png" sizes="64x64">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-96x96.png" sizes="96x96">
+
     <script>L_PREFER_CANVAS = true;</script>
     <script>build = 1;</script>
 </head>
@@ -13,6 +25,16 @@
     <div ng-view></div>
     <script src="app.bundle.js?build=1" async></script>
     <link rel="stylesheet" href="style.css?build=1">
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.10";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 </body>
 
 </html>

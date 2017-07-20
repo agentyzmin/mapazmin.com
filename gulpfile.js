@@ -125,8 +125,11 @@ gulp.task('copy-required-files', function() {
     return gulp
         .src([
             './geojson/*.json',
+            './img/*',
+            './img/**/*',
             './fonts/*',
-            './.htaccess'
+            './.htaccess',
+            './favicon.ico'
         ], { base: './' })
         .pipe(gulp.dest('./release'));
 });

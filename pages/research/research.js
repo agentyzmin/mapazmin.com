@@ -102,10 +102,6 @@
                 isChecked: true,
                 options: [
                     {
-                        id: 'roads',
-                        name: i18n.accessibility('roads')
-                    },
-                    {
                         id: 'open',
                         name: i18n.accessibility('open')
                     },
@@ -116,26 +112,16 @@
                     {
                         id: 'unreachable',
                         name: i18n.accessibility('unreachable')
+                    },
+                    {
+                        id: 'roads',
+                        name: i18n.accessibility('roads')
                     }
                 ]
             }
         ];
 
         $scope.objectsFilter = [
-            {
-                id: 'parking',
-                name: i18n.parking('filterName'),
-                options: [
-                    {
-                        id: 'yard',
-                        name: i18n.parking('yard')
-                    },
-                    {
-                        id: 'street',
-                        name: i18n.parking('street')
-                    }
-                ]
-            },
             {
                 id: 'trees',
                 name: i18n.trees('filterName'),
@@ -152,6 +138,20 @@
                     {
                         id: 's',
                         name: i18n.trees('s')
+                    }
+                ]
+            },
+            {
+                id: 'parking',
+                name: i18n.parking('filterName'),
+                options: [
+                    {
+                        id: 'yard',
+                        name: i18n.parking('yard')
+                    },
+                    {
+                        id: 'street',
+                        name: i18n.parking('street')
                     }
                 ]
             }

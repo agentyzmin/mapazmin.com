@@ -8,8 +8,7 @@
             colors: {
                 error: '#FF0000',
                 roads: '#6D6D6D',
-                yardsBorder: '#AAB3BE',
-                accessibilityOpen: '#FCDE60',
+                accessibilityOpen: '#B7B7B7',
                 accessibilityHardToReach: '#898989',
                 accessibilityUnreachable: '#666666',
                 carsYard: '#242424',
@@ -18,7 +17,7 @@
                 treesM: '#91C497',
                 treesL: '#91C497',
                 buildingsRuin: '#565656',
-                buildingsHousing: '#FFF6CF',
+                buildingsHousing: '#FFB42E',
                 buildingsCulture: '#4390FC',
                 buildingsGarage: '#AAAAAA',
                 buildingsCafe: '#FD6E70',
