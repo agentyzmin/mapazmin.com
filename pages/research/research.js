@@ -7,10 +7,11 @@
         'app.research.stats',
         'app.research.map',
         'app.research.filtersScale',
+        'app.fbRender',
         'app.i18n'
     ]);
 
-    module.controller('ResearchCtrl', ['$scope', '$rootScope', '$timeout', 'researchStat', 'i18n', function($scope, $rootScope, $timeout, researchStat, i18n) {
+    module.controller('ResearchCtrl', ['$scope', '$rootScope', '$timeout', '$location', 'researchStat', 'i18n', function($scope, $rootScope, $timeout, $location, researchStat, i18n) {
         $scope.i18n = i18n;
 
         $scope.peopleFilter = [
@@ -170,6 +171,11 @@
         $scope.$watch('buildingsFilter', updateBuildingsData, true);
         $scope.$watch('areaFilter', updateAreaData, true);
         $scope.$watch('objectsFilter', updateObjectsData, true);
+
+        // Analytics
+        if (window.ga) {
+            ga('send', 'pageview', { page: $location.url() });
+        }
 
         function getSelectedOptions(filter) {
             var allChecked = filter.isAllChecked,
