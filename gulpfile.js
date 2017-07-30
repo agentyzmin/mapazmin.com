@@ -37,7 +37,7 @@ gulp.task('build-css', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('build-css-min', function() {
+gulp.task('build-css-min', ['build-css'], function() {
     return gulp
         .src(['./style.css'])
         .pipe(cleanCSS({compatibility: 'ie8'}))
