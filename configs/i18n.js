@@ -45,9 +45,9 @@
             ruin: 'Руїни',
             housing: 'Житло',
             culture: 'Культура',
-            garage: 'Гаражі',
-            cafe: 'Кафе',
-            office: 'Офіси',
+            garage: 'Господарчі',
+            cafe: 'Торгівля',
+            office: 'Робота',
             unit: 'га'
         };
 
